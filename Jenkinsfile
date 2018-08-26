@@ -1,9 +1,9 @@
 node('') {
           stage 'build'
-          openshiftBuild(namespace: 'datpb-http', buildConfig: 'httpd-ex', showBuildLogs: 'true')
+          openshiftBuild(namespace: 'datpb-http-canary', buildConfig: 'httpd-ex', showBuildLogs: 'true')
           stage('Deploy approval'){
             input "Deploy to prod?"
             }
           stage 'deploy'
-          openshiftDeploy(namespace: 'datpb-http', deploymentConfig: 'httpd-ex')
+          openshiftDeploy(namespace: 'datpb-http-canary', deploymentConfig: 'httpd-ex')
         }
